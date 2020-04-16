@@ -1,5 +1,5 @@
-FROM heroku/heroku:16
-MAINTAINER Heroku Build Team <build@heroku.com>
+FROM heroku/heroku:18
+MAINTAINER Andrea Ceccarelli <d0k@recipient.cc>
 
 RUN useradd -ms /bin/bash me
 USER me
