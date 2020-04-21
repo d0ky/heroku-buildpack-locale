@@ -51,19 +51,19 @@ for lang in $langs; do
 
   puts_step "Updating or installing $package"
   apt-get $APT_OPTIONS update
-  apt-get $APT_OPTIONS -y -d install --reinstall $package
+  apt-get $APT_OPTIONS -y install $package
 
-  cat <<EOF >> $BUILD_DIR/.profile.d/000_locale.sh
-localedef -f $encoding -i $pack /app/.heroku/locales/usr/share/locale-langpack/$language/
-EOF
+#  cat <<EOF >> $BUILD_DIR/.profile.d/000_locale.sh
+#localedef -f $encoding -i $pack /app/.heroku/locales/usr/share/locale-langpack/$language/
+#EOF
 done
 
-puts_step "Unpacking and configuring all locales"
-for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
-  dpkg -x $DEB $BUILD_DIR/.heroku/locales/
-done
+#puts_step "Unpacking and configuring all locales"
+#for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+#  dpkg -x $DEB $BUILD_DIR/.heroku/locales/
+#done
 
-cat <<EOF >> $BUILD_DIR/.profile.d/000_locale.sh
-export I18NPATH=/app/.heroku/locales/var/lib/locales/supported.d
-export LOCPATH=/app/.heroku/locales/usr/share/locale-langpack/
-EOF
+#cat <<EOF >> $BUILD_DIR/.profile.d/000_locale.sh
+#export I18NPATH=/app/.heroku/locales/var/lib/locales/supported.d
+#export LOCPATH=/app/.heroku/locales/usr/share/locale-langpack/
+#EOF
